@@ -7,6 +7,7 @@ import (
 	"strings"
 )
 
+// processCharacters separates vowels and consonants while preserving their original order.
 func processCharacters(input string) (vowels, consonants string) {
 	input = strings.ToLower(strings.ReplaceAll(input, " ", ""))
 
@@ -18,6 +19,7 @@ func processCharacters(input string) (vowels, consonants string) {
 	}
 
 	for _, character := range input {
+		// Record unique characters to preserve appearance order
 		if characterCounts[character] == 0 {
 			if isVowel(character) {
 				vowelOrder = append(vowelOrder, character)
@@ -29,6 +31,7 @@ func processCharacters(input string) (vowels, consonants string) {
 		characterCounts[character]++
 	}
 
+	// Using String Builder for efficient string concatenation
 	var vowelBuilder, consonantBuilder strings.Builder
 
 	for _, v := range vowelOrder {
