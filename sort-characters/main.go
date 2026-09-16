@@ -1,7 +1,9 @@
 package main
 
 import (
+	"bufio"
 	"fmt"
+	"os"
 	"strings"
 )
 
@@ -41,16 +43,14 @@ func processCharacters(input string) (vowels, consonants string) {
 }
 
 func main() {
-	testCases := []string{
-		"Sample Case",
-		"Next Case",
-		"Makanan Enak",
-	}
+	reader := bufio.NewReader(os.Stdin)
+	fmt.Print("Input one line of word (S): ")
+	inputStr, _ := reader.ReadString('\n')
 
-	for _, tc := range testCases {
-		fmt.Printf("Input: %s \n", tc)
-		vowels, consonants := processCharacters(tc)
-		fmt.Printf("Vowel Characters: %s \n", vowels)
-		fmt.Printf("Consonants Characters: %s \n\n", consonants)
-	}
+	inputStr = strings.TrimSpace(inputStr)
+
+	vowels, consonants := processCharacters(inputStr)
+
+	fmt.Printf("Vowel Characters: %s\n", vowels)
+	fmt.Printf("Consonant Characters: %s\n", consonants)
 }
